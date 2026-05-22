@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "mkl_delphi - Intel MKL Wrapper for Delphi Integration"
+abstract: "A dynamic library written in C that provides a foundation for integrating the Intel Math Kernel Library (MKL) into Delphi applications. It currently expose a highly optimized CBLAS routine for dense linear algebra."
+authors:
+  - family-names: Galdo Galián
+    given-names: Daniel
+    orcid: "https://orcid.org/0009-0000-4952-1649"
+version: 1.0.0
+date-released: 2026-05-22
+repository-code: "https://github.com/HPC-Delphi/offc_delphi"
