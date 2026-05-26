@@ -1,5 +1,10 @@
 # mkl_delphi - Intel MKL Wrapper for Delphi Integration
 
+[![Platform](https://img.shields.io/badge/Platform-Windows%2011-blue)](https://www.microsoft.com/en-us/windows/windows-11)
+[![Intel icx](https://img.shields.io/badge/Intel%20icx-oneAPI%202026.0-0071C5)](https://www.intel.com/content/www/us/en/developer/tools/oneapi/dpc-compiler-download.html)
+[![Intel oneAPI MKL](https://img.shields.io/badge/Intel%20oneAPI%20MKL-2026.0-0071C5)](https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl-download.html)
+[![Build Tools](https://img.shields.io/badge/Build%20Tools-MSVC%20nmake%20VS%202026-brightgreen)](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022)
+
 `mkl_delphi` is a dynamic library written in C, providing a foundation for integrating the Intel Math Kernel Library (MKL) into Delphi applications. It currently exposes the highly optimized CBLAS `cblas_dgemm` routine and serves as an open-source template for expanding Delphi-MKL interoperability in High-Performance Computing (HPC) environments.
 
 ## Features
@@ -25,7 +30,7 @@ Unlike standard GCC setups, compiling against Intel MKL on Windows requires the 
 
 **1: Install MSVC Build Tools (for `nmake`)**
 
-* Navigate to the [Visual Studio Downloads page](https://visualstudio.microsoft.com/es/downloads/ "null").
+* Navigate to the [Visual Studio Downloads page](https://visualstudio.microsoft.com/downloads/).
     
 * Scroll down to the **"Tools for Visual Studio"** section and download the installer for **Build Tools for Visual Studio 2026** (the version year may vary depending on the current release).
     
@@ -41,7 +46,7 @@ Unlike standard GCC setups, compiling against Intel MKL on Windows requires the 
 
 **2: Install Intel oneAPI Toolkit (for `icx` and MKL)**
 
-* Navigate to the [Intel oneAPI Toolkit Download page](https://www.intel.com/content/www/us/en/developer/tools/oneapi/oneapi-toolkit-download.html "null").
+* Navigate to the [Intel oneAPI Toolkit Download page](https://www.intel.com/content/www/us/en/developer/tools/oneapi/oneapi-toolkit-download.html).
     
 * Click on "Continue as Guest..." to download the offline or online installer.
     
@@ -68,24 +73,30 @@ mkl_delphi/
 
 ## Compilation Instructions
 
-Once your build tools and Intel MKL are properly installed, you must initialize the Intel environment variables before compiling:
+Once your build tools and Intel MKL are properly installed, follow these steps to compile the DLL:
 
-1. Open a **Developer Command Prompt** (installed during "1: Install MSVC Build Tools (for `nmake`)").
-    
-2. Initialize the Intel oneAPI environment variables by running the `setvars.bat` script. Execute the following command (adjust the path if you installed oneAPI in a custom directory):
+1. Open a **Command Prompt**.
+
+2. Set the `VS2022INSTALLDIR` variable so that Intel's `setvars.bat` can locate the MSVC Build Tools correctly:
+```bat
+set "VS2022INSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools"
 ```
-"C:\Program Files (x86)\Intel\oneAPI\setvars.bat"
+> Note: you can skip this step if you opened **Developer Command Prompt** instead.
+
+3. Initialize the Intel oneAPI environment variables by running the `setvars.bat` script (adjust the path if you installed oneAPI in a custom directory):
+```bat
+call "C:\Program Files (x86)\Intel\oneAPI\setvars.bat"
 ```
-    
-3. Navigate to the root directory of this repository:
-```
+
+4. Navigate to the root directory of this repository:
+```bat
 cd path\to\mkl_delphi
 ```
-    
-4. Run the build tool to compile the DLL:
-```
+
+5. Run the build tool to compile the DLL:
+```bat
 nmake
-``` 
+```
 
 This will generate `mkl_delphi.dll` in the `build\` directory.
 
